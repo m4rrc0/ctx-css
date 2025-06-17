@@ -1,0 +1,20 @@
+{
+  "name": "ctx-css",
+  "module": "index.ts",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.0",
+    "@types/bun": "latest",
+    "bun": "^1.2.15",
+    "prettier": "^3.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "eleventy",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,html,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,html,css,md}\""
+  },
+  "type": "module"
+}

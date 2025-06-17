@@ -1,0 +1,498 @@
+/* nuds color system - user defined values */
+/* --------------------------------------- */
+@custom-selector :--palette-match [class*="ctxc-"];
+@custom-selector :--palette-alt-default .ctxc-alt-default;
+@custom-selector :--palette-alt .ctxc-alt;
+@custom-selector :--palette-contrast .ctxc-contrast;
+@custom-selector :--palette-alt-contrast .ctxc-alt.ctxc-contrast, .ctxc-alt-contrast;
+@custom-selector :--palette-accent .ctxc-accent;
+@custom-selector :--palette-accent-contrast .ctxc-accent.ctxc-contrast, .ctxc-accent-contrast;
+
+:root {
+	/* Bare minimum default in case nothing is defined */
+	color: var(--color-text, #050505);
+	/* Global Color variables can be created here if needed */
+	/* --clr-white: theme(colors.white); */
+}
+
+/* === COLOR PALETTES === */
+/* ---------------------- */
+:root,
+/* body, */
+.ctxc-defaul,
+.ctxc-red,
+.ctxc-coral {
+	/* --color-front: var(--color-blue);
+	--color-front-alt: var(--color-purple);
+	... */
+
+	--color-front: theme(colors.black);
+	--color-back: theme(colors.white);
+	--color-front-alt: theme(colors.coral.dark);
+	--color-back-alt: theme(colors.white);
+	--color-front-accent: theme(colors.coral.mid);
+	/* --color-back-accent: hsla(theme(colors.coral.light-hsla), 0.5); */
+	--color-back-accent: theme(colors.coral.light);
+	--color-front-muted: theme(colors.sand.mid);
+	/* --color-back-muted: theme(colors.aubergine.DEFAULT); */
+	--color-back-muted: hsla(theme(colors.coral.light-hsla), 0.5);
+
+	--color-front-success: theme(colors.curcuma.dark);
+	--color-back-success: theme(colors.curcuma.light);
+	--color-front-warning: theme(colors.curcuma.dark);
+	--color-back-warning: theme(colors.curcuma.light);
+	--color-front-error: theme(colors.coral.mid);
+	--color-back-error: theme(colors.coral.light);
+}
+
+.ctxc-coral {
+	--color-front: theme(colors.coral.dark);
+	--color-back: theme(colors.white);
+	--color-front-alt: theme(colors.black);
+	--color-back-alt: theme(colors.white);
+	--color-front-accent: theme(colors.coral.mid);
+	--color-back-accent: theme(colors.white);
+	/* --color-back-accent: hsla(theme(colors.coral.light-hsla), 0.5); */
+	/* --color-back-accent: theme(colors.coral.light-hsla); */
+	--color-front-muted: theme(colors.sand.mid);
+	--color-back-muted: theme(colors.mouse.light);
+	--color-front-success: theme(colors.curcuma.dark);
+	--color-back-success: theme(colors.curcuma.light);
+	--color-front-warning: theme(colors.curcuma.dark);
+	--color-back-warning: theme(colors.curcuma.light);
+	--color-front-error: theme(colors.coral.mid);
+	--color-back-error: theme(colors.coral.light);
+}
+
+.ctxc-curcuma {
+	--color-front: theme(colors.curcuma.dark);
+	--color-back: theme(colors.white);
+	--color-front-alt: theme(colors.black);
+	--color-back-alt: theme(colors.white);
+	--color-front-accent: theme(colors.coral.dark);
+	--color-back-accent: hsla(theme(colors.curcuma.light-hsla), 0.5);
+	/* --color-back-accent: theme(colors.curcuma.light-hsla); */
+	--color-front-muted: theme(colors.sand.mid);
+	--color-back-muted: theme(colors.mouse.light);
+	--color-front-success: theme(colors.curcuma.dark);
+	--color-back-success: theme(colors.curcuma.light);
+	--color-front-warning: theme(colors.curcuma.dark);
+	--color-back-warning: theme(colors.curcuma.light);
+	--color-front-error: theme(colors.curcuma.mid);
+	--color-back-error: theme(colors.curcuma.light);
+}
+
+.ctxc-sand {
+	--color-front: theme(colors.sand.dark);
+	--color-back: theme(colors.white);
+	--color-front-alt: theme(colors.black);
+	--color-back-alt: theme(colors.white);
+	--color-front-accent: theme(colors.coral.dark);
+	--color-back-accent: hsla(theme(colors.sand.light-hsla), 0.5);
+	/* --color-back-accent: theme(colors.sand.light-hsla); */
+	--color-front-muted: theme(colors.sand.mid);
+	--color-back-muted: theme(colors.mouse.light);
+	--color-front-success: theme(colors.curcuma.dark);
+	--color-back-success: theme(colors.curcuma.light);
+	--color-front-warning: theme(colors.sand.dark);
+	--color-back-warning: theme(colors.sand.light);
+	--color-front-error: theme(colors.curcuma.mid);
+	--color-back-error: theme(colors.curcuma.light);
+}
+
+.ctxc-red {
+	--color-front: theme(colors.coral.mid);
+	--color-front-accent: theme(colors.aubergine.DEFAULT);
+	--color-front-muted: theme(colors.curcuma.mid);
+	/* TODO: ? keeping what is down ? */
+	--color-back-muted: theme(colors.aubergine.DEFAULT);
+	--color-front-success: theme(colors.curcuma.dark);
+	--color-back-success: theme(colors.curcuma.light);
+	--color-front-warning: theme(colors.curcuma.dark);
+	--color-back-warning: theme(colors.curcuma.light);
+	--color-front-error: theme(colors.coral.mid);
+	--color-back-error: theme(colors.coral.light);
+}
+
+/* :root,
+body,
+.ctxc-default,
+.ctxc-main,
+.ctxc-blue {
+  --color-back: var(--color-white);
+  --color-front: var(--color-blue);
+  --color-front-accent: var(--color-teal);
+} */
+/* .ctxc-red,
+.ctxc-danger {
+  --color-back: var(--color-white);
+  --color-front: var(--color-red);
+  --color-front-accent: var(--color-blue);
+} */
+/* .ctxc-trans,
+.ctxc-blue-trans {
+  --color-back: var(--color-blue-trans);
+  --color-front: var(--color-white);
+  --color-front-accent: var(--color-teal);
+} */
+
+/* === VARIATIONS === */
+/* This is useful to be able to use variations of the same palette */
+:root {
+	/* --color-neutral: var(--color-neutral);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary); */
+
+	/* -- Variable name ideas -- */
+	/* colorTertiary */
+	/* highlight */
+	/* muted */
+	/* dimmed */
+	/* Success */
+	/* Warning */
+	/* Danger */
+	/* Dark */
+	/* Medium */
+	/* Light */
+	/* — background-color and text color in each of the 4 states:
+    - Resting
+    - Hover
+    - Focus
+    - Disabled */
+
+	/* --color-alt-theme: var(--color-alt);
+  --color-accent-theme: var(--color-accent);
+  --color-muted-theme: var(--color-muted);
+  --color-success-theme: var(--color-success);
+  --color-warning-theme: var(--color-warning);
+  --color-error-theme: var(--color-error); */
+
+	--color-front-theme: var(--color-front); /* prettier-ignore */
+	--color-front-alt-theme: var(--color-front-alt, var(--color-alt-theme)); /* prettier-ignore */
+	--color-front-accent-theme: var(--color-front-accent, var(--color-accent-theme)); /* prettier-ignore */
+	--color-front-muted-theme: var(--color-front-muted, var(--color-muted-theme)); /* prettier-ignore */
+	--color-front-success-theme: var(--color-front-success, var(--color-success-theme)); /* prettier-ignore */
+	--color-front-warning-theme: var(--color-front-warning, var(--color-warning-theme)); /* prettier-ignore */
+	--color-front-error-theme: var(--color-front-error, var(--color-error-theme)); /* prettier-ignore */
+	--color-back-theme: var(--color-back); /* prettier-ignore */
+	--color-back-alt-theme: var(--color-back-alt); /* prettier-ignore */
+	--color-back-accent-theme: var(--color-back-accent); /* prettier-ignore */
+	--color-back-muted-theme: var(--color-back-muted); /* prettier-ignore */
+	--color-back-success-theme: var(--color-back-success); /* prettier-ignore */
+	--color-back-warning-theme: var(--color-back-warning); /* prettier-ignore */
+	--color-back-error-theme: var(--color-back-error); /* prettier-ignore */
+}
+
+/* color palette ALTernate assignments */
+:--palette-alt-default,
+:--palette-match,
+:--palette-alt,
+:--palette-accent {
+	--color-front-theme: var(--color-front); /* prettier-ignore */
+	--color-front-alt-theme: var(--color-front-alt); /* prettier-ignore */
+	--color-front-accent-theme: var(--color-front-accent); /* prettier-ignore */
+	--color-front-muted-theme: var(--color-front-muted); /* prettier-ignore */
+	--color-front-success-theme: var(--color-front-success); /* prettier-ignore */
+	--color-front-warning-theme: var(--color-front-warning); /* prettier-ignore */
+	--color-front-error-theme: var(--color-front-error); /* prettier-ignore */
+	--color-back-theme: var(--color-back); /* prettier-ignore */
+	--color-back-alt-theme: var(--color-back-alt); /* prettier-ignore */
+	--color-back-accent-theme: var(--color-back-accent); /* prettier-ignore */
+	--color-back-muted-theme: var(--color-back-muted); /* prettier-ignore */
+	--color-back-success-theme: var(--color-back-success); /* prettier-ignore */
+	--color-back-warning-theme: var(--color-back-warning); /* prettier-ignore */
+	--color-back-error-theme: var(--color-back-error); /* prettier-ignore */
+}
+:--palette-alt {
+	--color-front-theme: var(--color-front-alt); /* prettier-ignore */
+	--color-front-alt-theme: var(--color-front); /* prettier-ignore */
+	--color-back-theme: var(--color-back-alt); /* prettier-ignore */
+	--color-back-alt-theme: var(--color-back); /* prettier-ignore */
+}
+:--palette-accent {
+	--color-front-theme: var(--color-front-accent); /* prettier-ignore */
+	--color-front-accent-theme: var(--color-front); /* prettier-ignore */
+	--color-back-theme: var(--color-back-accent); /* prettier-ignore */
+	--color-back-accent-theme: var(--color-back); /* prettier-ignore */
+}
+:--palette-contrast,
+:--palette-alt-contrast,
+:--palette-accent-contrast {
+	--color-front-theme: var(--color-back); /* prettier-ignore */
+	--color-front-alt-theme: var(--color-back-alt); /* prettier-ignore */
+	--color-front-accent-theme: var(--color-back-accent); /* prettier-ignore */
+	--color-front-muted-theme: var(--color-back-muted); /* prettier-ignore */
+	--color-front-success-theme: var(--color-back-success); /* prettier-ignore */
+	--color-front-warning-theme: var(--color-back-warning); /* prettier-ignore */
+	--color-front-error-theme: var(--color-back-error); /* prettier-ignore */
+	--color-back-theme: var(--color-front); /* prettier-ignore */
+	--color-back-alt-theme: var(--color-front-alt); /* prettier-ignore */
+	--color-back-accent-theme: var(--color-front-accent); /* prettier-ignore */
+	--color-back-muted-theme: var(--color-front-muted); /* prettier-ignore */
+	--color-back-success-theme: var(--color-front-success); /* prettier-ignore */
+	--color-back-warning-theme: var(--color-front-warning); /* prettier-ignore */
+	--color-back-error-theme: var(--color-front-error); /* prettier-ignore */
+}
+:--palette-alt-contrast {
+	--color-front-theme: var(--color-back-alt); /* prettier-ignore */
+	--color-front-alt-theme: var(--color-back); /* prettier-ignore */
+	--color-back-theme: var(--color-front-alt); /* prettier-ignore */
+	--color-back-alt-theme: var(--color-front); /* prettier-ignore */
+}
+:--palette-accent-contrast {
+	--color-front-theme: var(--color-back-accent); /* prettier-ignore */
+	--color-front-accent-theme: var(--color-back); /* prettier-ignore */
+	--color-back-theme: var(--color-front-accent); /* prettier-ignore */
+	--color-back-accent-theme: var(--color-front); /* prettier-ignore */
+}
+
+/* === CUSTOMIZATION === */
+/* ===================== */
+
+/* --- custom ALTernate assignments --- */
+/* ------------------------------------------- */
+.ctxc-alt-funky {
+	/* We only need to redefine the changes from the default assignment */
+	--color-front-theme: var(--color-front-accent); /* prettier-ignore */
+	--color-front-accent-theme: var(--color-front); /* prettier-ignore */
+	--color-back-theme: var(--color-back-accent); /* prettier-ignore */
+	--color-back-accent-theme: var(--color-back); /* prettier-ignore */
+}
+
+/* --- Color palettes EXCEPTIONS --- */
+/* --------------------------------- */
+/* we can manage exceptions on a palette or alt basis if necessary */
+/* :--button[data-c-p~="contrast"], */
+/* button[class*="ctxc-"][class*="-contrast"],
+button.ctxc-alt {
+	--color-text__button--hover: var(--color-bg);
+	--color-bg__button--hover: var(--color-text);
+	--color-border__button: var(--color-bg);
+	--color-outline: var(--color-bg);
+} */
+
+/* === SYSTEM SETUP === */
+/* Assign the palette colors to elements */
+/* Anytime a color context is set, reassign variables so they are used from then and nested */
+body,
+:--palette-match {
+	/* --- DEFAULTS --- */
+	--color-text: var(--color-front-theme);
+	--color-bg: var(--color-back-theme);
+	/* --color-border: var(); */
+	/* --color-outline: var(); */
+	--color-text-decoration: var(--color-front-accent-theme);
+	/* --color-text-emphasis: var(); */
+	/* --color-shadow has to be used manually in box-shadow definitions */
+	--color-shadow: var(--color-front-muted-theme);
+	/* --color-caret: var(); */
+	/* --color-column-rule: var(); */
+	/* --color-fill: var(); */
+	/* --color-stroke: var(); */
+
+	/* --- FOCUS --- */
+	/* --color-outline--focus: var(); */
+
+	/* --- SELECTION --- */
+	--color-text--selection: var(--color-back-theme);
+	--color-bg--selection: var(--color-front-accent-theme);
+
+	/* --- A --- */
+	/* --color-text__a: var(--color-text); */
+	/* --color-bg__a: transparent; */
+	--color-text__a--hover: var(--color-front-accent-theme);
+	/* --color-bg__a--hover: var(--color-back-theme); */
+
+	/* --- BUTTON --- */
+	--color-text__button: var(--color-front-theme);
+	--color-bg__button: var(--color-back-theme);
+	--color-border__button: var(--color-front-theme);
+	--color-text__button--hover: var(--color-back-theme);
+	--color-bg__button--hover: var(--color-front-theme);
+	--color-border__button--hover: var(--color-front-theme);
+	/* --color-text__button--disabled: var(--color-front-accent-theme); */
+	/* --color-bg__button--disabled: var(--color-bg); */
+
+	/* --- CODE --- */
+	/* --color-text__code: var(--color-bg); */
+	/* --color-bg__code: var(--color-front-accent-theme); */
+	/* --color-border__code: var(--color-front-theme); */
+
+	/* --- MARK --- */
+	/* --color-text__mark: var(--color-bg); */
+	--color-bg__mark: var(--color-back-muted-theme);
+	/* --color-border__mark: var(--color-front-theme); */
+
+	/* --- SCROLLBAR --- */
+	/* TODO: this is for the Reel Layout Component */
+	/* --track-color */
+	/* --thumb-color */
+	/*  */
+}
+
+:--palette-contrast,
+:--palette-alt-contrast,
+:--palette-accent-contrast {
+	--color-border__button: var(--color-back-theme);
+	--color-border__button--hover: var(--color-back-theme);
+}
+
+body,
+:--palette-match {
+	/* === ALL COLOR PROPERTIES === */
+	/* nuds color system - default rules and values */
+	/* -------------------------------------------- */
+	/* Default variable names and fallback values for every css color-related properties */
+	/* Note: We provide a fallback value in case custom properties are supported but the variable is not set */
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	/* other properties have a fallback of 'currentcolor' so we don't have to set a value if we are fine with the fallback */
+	border-color: var(--color-border, currentcolor);
+	outline-color: var(--color-outline, currentcolor);
+	text-decoration-color: var(--color-text-decoration, currentcolor);
+	text-emphasis-color: var(--color-text-emphasis, currentcolor);
+	caret-color: var(--color-caret, currentcolor);
+	column-rule-color: var(--color-column-rule, currentcolor);
+	fill: var(--color-fill, currentcolor);
+	stroke: var(--color-stroke, transparent);
+}
+
+/* More variable names definitions and fallback values for css selectors */
+*:--focus,
+:--palette-match:--focus,
+:--palette-match *:--focus {
+	outline-color: var(--color-outline--focus, var(--color-outline, currentcolor));
+}
+*:--selection,
+:--palette-match:--selection,
+:--palette-match *:--selection,
+*::selection,
+:--palette-match:-:selection,
+:--palette-match *::selection {
+	color: var(--color-text--selection);
+	background-color: var(--color-bg--selection);
+	border-color: var(--color-border--selection, currentcolor);
+}
+a,
+a:--palette-match,
+:--palette-match a {
+	color: var(--color-text__a);
+	background-color: var(--color-bg__a);
+	border-color: var(--color-border__a, currentcolor);
+}
+a:--hover,
+a:--palette-match:--hover,
+:--palette-match a:--hover {
+	color: var(--color-text__a--hover);
+	background-color: var(--color-bg__a--hover);
+	border-color: var(--color-border__a, currentcolor);
+}
+:--button,
+:--button:--palette-match,
+:--palette-match :--button {
+	color: var(--color-text__button);
+	background-color: var(--color-bg__button);
+	border-color: var(--color-border__button, currentcolor);
+}
+:--button:--hover-focus,
+:--button:--palette-match:--hover-focus,
+:--palette-match :--button:--hover-focus {
+	color: var(--color-text__button--hover);
+	background-color: var(--color-bg__button--hover);
+	border-color: var(--color-border__button--hover, currentcolor);
+}
+:--button:--disabled,
+:--button:--palette-match:--disabled,
+:--palette-match :--button:--disabled {
+	color: var(--color-text__button--disabled);
+	background-color: var(--color-bg__button--disabled);
+	border-color: var(--color-border__button--disabled, currentcolor);
+}
+:--code,
+:--code:--palette-match,
+:--palette-match :--code {
+	color: var(--color-text__code);
+	background-color: var(--color-bg__code);
+	border-color: var(--color-border__code);
+}
+:--mark,
+:--mark:--palette-match,
+:--palette-match :--mark {
+	color: var(--color-text__mark);
+	background-color: var(--color-bg__mark);
+	border-color: var(--color-border__mark);
+}
+/* End of variables assignments and fallback values */
+
+/* Every element inherits colors for the closest defined parent */
+:where(body) *,
+:where(:--palette-match) * {
+	color: inherit;
+	/* ... except for the background that should probably just remain transparent */
+	/* background-color: inherit; */
+	/* Note: if we want to enforce an inherited background, we can set a class of "color-palette-" on an element */
+	border-color: inherit;
+	outline-color: inherit;
+	text-decoration-color: inherit;
+	text-emphasis-color: inherit;
+	caret-color: inherit;
+	column-rule-color: inherit;
+}
+
+/* NOTE: System Colors are as follows */
+/* AccentColor (not widely supported yet)
+Background of accented user interface controls
+
+AccentColorText (not widely supported yet)
+Text of accented user interface controls
+
+ActiveText
+Text of active links
+
+ButtonBorder
+Base border color of controls
+
+ButtonFace
+Background color of controls
+
+ButtonText
+Text color of controls
+
+Canvas
+Background of application content or documents
+
+CanvasText
+Text color in application content or documents
+
+Field
+Background of input fields
+
+FieldText
+Text in input fields
+
+GrayText
+Text color for disabled items (e.g. a disabled control)
+
+Highlight
+Background of selected items
+
+HighlightText
+Text color of selected items
+
+LinkText
+Text of non-active, non-visited links
+
+Mark
+Background of text that has been specially marked (such as by the HTML mark element)
+
+MarkText
+Text that has been specially marked (such as by the HTML mark element)
+
+SelectedItem
+Background of selected items, for example, a selected checkbox
+
+SelectedItemText
+Text of selected items
+
+VisitedText
+Text of visited links */

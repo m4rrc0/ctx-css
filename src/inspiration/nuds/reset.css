@@ -1,0 +1,118 @@
+/* Credits -> Andy Bell at https://hankchizljaw.com/wrote/a-modern-css-reset/ */
+/* Box sizing rules */
+:where(*),
+:where(*::before),
+:where(*::after) {
+	box-sizing: border-box;
+	overflow-wrap: break-word;
+	/* margin: 0; */
+	/* padding: 0; */
+}
+/* ul[class], */
+/* ol[class] { */
+:where(ul.reset),
+:where(ol.reset) {
+	/* Remove default padding */
+	padding: 0;
+	/* Remove list styles on ul, ol elements with a class attribute */
+	list-style: none;
+}
+/* Remove default margin */
+:where(body),
+:where(h1),
+:where(h2),
+:where(h3),
+:where(h4),
+:where(h5),
+:where(h6),
+:where(p),
+/* ul[class], /* [class] can cause specificity issues. For example, it overrides .cluster > * { margin: ... } */
+/* ol[class], */
+:where(ul.reset),
+:where(ol.reset),
+:where(li),
+:where(figure),
+:where(figcaption),
+:where(blockquote),
+:where(dl),
+:where(dd),
+:where(pre) {
+	margin: 0;
+}
+/* Set core body defaults */
+:where(body) {
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+/* A elements that don't have a class get default styles */
+/* NOTE: IMO should be a default for <a> elems */
+/* a:not([class]) { */
+:where(a) {
+	text-decoration-skip-ink: auto;
+}
+/* Make images easier to work with */
+:where(img),
+:where(video) {
+	max-width: 100%;
+	height: auto; /* Keep aspect ratio */
+	display: block;
+}
+/* Natural flow and rhythm in articles by default */
+/* article > * + * {
+  margin-top: 1em;
+} */
+/* Inherit fonts for inputs and buttons */
+:where(input),
+:where(button),
+:where(textarea),
+:where(select) {
+	font: inherit;
+}
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ---------- CUSTOM ---------- */
+/* hr should be visible */
+:where(hr) {
+	width: 100%;
+}
+:where(pre) {
+	overflow-x: scroll;
+}
+:where(a),
+:where(button),
+:where(.button),
+:where(input[type="submit"]),
+:where(input[type="button"]),
+:where(input[type="reset"]),
+:where(summary) {
+	cursor: pointer;
+}
+
+:where(a.reset),
+:where(a.reset *),
+:where(.reset-a a),
+:where(.reset-a a *) {
+	/* color: inherit; */
+	text-decoration: inherit;
+	/* border-bottom: none; */
+}
+
+:where(p svg) {
+	/* display: inline-block; */
+	height: 1em;
+	vertical-align: middle;
+}
+
+:where(summary > *) {
+	display: inline; /* Prevent summary from jumping under the summary::marker (arrow) */
+}

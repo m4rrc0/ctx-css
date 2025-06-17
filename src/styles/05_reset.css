@@ -1,0 +1,302 @@
+/* 
+ * CTX CSS Reset
+ * Based on best practices from modern CSS methodologies
+ * Embraces the cascade, uses progressive enhancement, and provides a solid foundation
+ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+/* Normalize margins with logical properties for better internationalization */
+/* Reset only top-level margins to allow for proper spacing within components */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+/* Only remove list styles on ul, ol elements with a list role */
+/* This preserves default list styles for semantic lists while allowing unstyled lists when needed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-wrap: break-word; /* Break long words if needed */
+}
+
+/* Push footer to bottom of page */
+footer {
+  margin-block-start: auto;
+}
+
+/* Improve typography */
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings and prevent overflow with long words */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  max-width: 100%; /* Ensure headings don't exceed their container */
+}
+h1 {
+  hyphens: auto; /* Add hyphens when breaking words for better readability. NOTE: word breaking is more sensitive with this */
+}
+
+/* A elements that don't have a class get default skip-ink */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+:where(a:not([class]) > *) {
+  color: inherit;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+svg {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Only block display for images that are direct children of certain containers */
+figure > :is(img, picture, video),
+p > :is(img, picture, video):only-child,
+div > :is(img, picture, video):only-child {
+  display: block;
+}
+
+/* Form elements: prevent overflow and improve usability */
+input,
+button,
+textarea,
+select,
+fieldset,
+legend {
+  font: inherit; /* Shorthand for font-family and font-size */
+  max-width: 100%;
+}
+
+/* TODO: Should we keep? It is a bit drastic */
+/* Avoid overflowing textarea when cols is a large number */
+textarea {
+  /* display: block; */
+  /* width: 100%; */
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Handle number input controls specially */
+input[type='number'] {
+  width: auto; /* Prevent full-width number inputs */
+}
+
+/* Ensure form controls are properly contained */
+fieldset {
+  min-width: 0; /* Prevent minimum content width in Firefox and others */
+}
+
+/* Make sure legends don't cause overflow */
+legend {
+  white-space: normal; /* Allow wrapping */
+  display: table; /* Allow margin to work */
+}
+
+/* Prevent unexpected clipping of decorations, shadows, animations, ... */
+svg {
+  overflow: visible;
+}
+
+/* SVGs in text contexts - icon-sized and aligned with text */
+/* Full list of inline elements can probalby be avoided? */
+/* :is( p, span, a, button, label, li, dt, dd, th, td, abbr, b, bdi, bdo, cite, code, data, dfn, em, i, kbd, mark, q, ruby, s, samp, small, strong, sub, sup, time, u, var) */
+svg:not([width]):not([height]):not(:only-child),
+/* Target SVGs without explicit dimensions inside text containers */
+:where(a, button, label, span, p, li, dt, dd, th, td, code, summary) svg:not([width]):not([height]) {
+  display: inline-block;
+  /* width: 1em; */
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+/* SVGs that are standalone illustrations/diagrams */
+/* TODO: should we select p parents as well? Might be useful for content extracted from markdown */
+:where(figure, div, section, header, footer, main, article, aside, nav) > svg:only-child {
+  display: block;
+  margin-inline: auto;
+}
+
+/* Remove all animations, transitions and smooth scrolling for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Improve scrolling experience */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Fix monospace sizing issues and overflow */
+pre,
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Prevent code blocks from overflowing */
+pre {
+  /* TODO: see if we should use white-space: pre-wrap; */
+  /* Line breaks may render as less legible */
+  /* white-space: pre-wrap; */
+  /* overflow-wrap: break-word; */
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Handle long strings in code and prevent layout overflow */
+code {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Ensure basic focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid;
+}
+
+/* Remove the default focus outline from elements that already have a visible focus state */
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Preserve default styling for tables and prevent overflow */
+table {
+  border-collapse: collapse;
+  table-layout: auto;
+  display: block;
+  width: fit-content; /* Closer to default behavior when display: table; */
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Handle nested tables - reset nested tables back to table display */
+table table {
+  display: table;
+  width: 100%;
+  overflow: visible;
+  margin-block-end: 0;
+}
+
+/* Explicitly specify display for table elements for accessibility reasons */
+/* This maintains table semantics for assistive technologies when parent is display: block */
+caption {
+  display: table-caption;
+}
+thead,
+tbody,
+tfoot {
+  display: table-row-group;
+}
+tr {
+  display: table-row;
+}
+th,
+td {
+  display: table-cell;
+}
+colgroup {
+  display: table-column-group;
+}
+col {
+  display: table-column;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid;
+}
+
+:where(summary > *) {
+  display: inline; /* Prevent summary from jumping under the summary::marker (arrow) if it is a block element like a heading */
+}
+
+summary {
+  cursor: pointer;
+}
+
+/* Skip link for accessibility */
+:where(body, body > header) > :where(a:first-of-type[href='#main']) {
+  background: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-150%);
+  transition: transform 0.3s;
+}
+:where(body, body > header) > :where(a:first-of-type[href='#main']):focus {
+  transform: translateX(-50%) translateY(20%);
+}

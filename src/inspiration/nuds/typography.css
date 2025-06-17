@@ -1,0 +1,103 @@
+/* nuds font-size system (with help of utopia.fyi) */
+/* --------------------------------------- */
+/* TODO: Chose strategy: */
+/* ? -> 1. Have globally available variables and pick among them to create ctx */
+/* 2. Variables are defined for each ctx with property name directly (recompute scale on each ctx */
+
+/* Define available global font-sizes variables */
+:root {
+	@apply f-var-s-10;
+	@apply f-var-s-9;
+	@apply f-var-s-8;
+	@apply f-var-s-7;
+	@apply f-var-s-6;
+	@apply f-var-s-5;
+	@apply f-var-s-4;
+	@apply f-var-s-3;
+	@apply f-var-s-2;
+	@apply f-var-s-1;
+	@apply f-var-s0;
+	@apply f-var-s1;
+	@apply f-var-s2;
+	@apply f-var-s3;
+	@apply f-var-s4;
+	@apply f-var-s5;
+	@apply f-var-s6;
+	@apply f-var-s7;
+	@apply f-var-s8;
+	@apply f-var-s9;
+	@apply f-var-s10;
+	@apply f-var-s11;
+	@apply f-var-s12;
+	@apply f-var-s13;
+	@apply f-var-s14;
+	@apply f-var-s15;
+}
+:where(:root, [class*="ctxs"]) {
+	/* prettier-ignore */
+	.h-3, .text-h-3 { font-size: var(--fs-h-3); } /* prettier-ignore */
+	.h-2, .text-h-2 { font-size: var(--fs-h-2); } /* prettier-ignore */
+	.h-1, .text-h-1 { font-size: var(--fs-h-1); } /* prettier-ignore */
+	.h0, .text-h0 { font-size: var(--fs-h0); } /* prettier-ignore */
+	h1, .h1, .text-h1 { font-size: var(--fs-h1); } /* prettier-ignore */
+	h2, .h2, .text-h2 { font-size: var(--fs-h2); } /* prettier-ignore */
+	h3, .h3, .text-h3 { font-size: var(--fs-h3); } /* prettier-ignore */
+	h4, .h4, .text-h4 { font-size: var(--fs-h4); } /* prettier-ignore */
+	p, .p, .text-p { font-size: var(--fs-p); } /* prettier-ignore */
+	h5, .h5, .text-h5 { font-size: var(--fs-h5); } /* prettier-ignore */
+	small, .small, .text-small { font-size: var(--fs-small); } /* prettier-ignore */
+	h6, .h6, .text-h6 { font-size: var(--fs-h6); } /* prettier-ignore */
+	.text-xs { font-size: var(--fs-xs); } /* prettier-ignore */
+	h7, .h7, .text-h7 { font-size: var(--fs-h7); } /* prettier-ignore */
+	h8, .h8, .text-h8 { font-size: var(--fs-h8); } /* prettier-ignore */
+	h9, .h9, .text-h9 { font-size: var(--fs-h9); } /* prettier-ignore */
+}
+
+body {
+	@apply font-sans;
+}
+:where(:--headings) {
+	@apply leading-none;
+	@apply font-400;
+}
+/* Default */
+:root,
+[class*="ctxs"],
+.ctxs-reset,
+.ctxs-default {
+	/* prettier-ignore */
+	--fs-h-3: var(--f-s7); /* prettier-ignore */
+	--fs-h-2: var(--f-s6); /* prettier-ignore */
+	--fs-h-1: var(--f-s5); /* prettier-ignore */
+	--fs-h0: var(--f-s4); /* prettier-ignore */
+	--fs-h1: var(--f-s3); /* prettier-ignore */
+	--fs-h2: var(--f-s2); /* prettier-ignore */
+	--fs-h3: var(--f-s1); /* prettier-ignore */
+	--fs-h4: var(--f-s0); /* prettier-ignore */
+	--fs-p: var(--f-s0); /* prettier-ignore */
+	--fs-h5: var(--f-s-1); /* prettier-ignore */
+	--fs-small: var(--f-s-1); /* prettier-ignore */
+	--fs-h6: var(--f-s-2); /* prettier-ignore */
+	--fs-xs: var(--f-s-2); /* prettier-ignore */
+	--fs-h7: var(--f-s-3); /* prettier-ignore */
+	--fs-h8: var(--f-s-4); /* prettier-ignore */
+	--fs-h9: var(--f-s-5); /* prettier-ignore */
+}
+.ctxs-massive {
+	/* prettier-ignore */
+	--fs-h-2: var(--f-s9); /* prettier-ignore */
+	--fs-h-1: var(--f-s8); /* prettier-ignore */
+	--fs-h0: var(--f-s7); /* prettier-ignore */
+	--fs-h1: var(--f-s6); /* prettier-ignore */
+	--fs-h2: var(--f-s5); /* prettier-ignore */
+	--fs-h3: var(--f-s4); /* prettier-ignore */
+	--fs-h4: var(--f-s3); /* prettier-ignore */
+	--fs-p: var(--f-s2); /* prettier-ignore */
+	--fs-h5: var(--f-s1); /* prettier-ignore */
+	--fs-small: var(--f-s0); /* prettier-ignore */
+	--fs-h6: var(--f-s-1); /* prettier-ignore */
+	--fs-xs: var(--f-s-2); /* prettier-ignore */
+	--fs-h7: var(--f-s-2); /* prettier-ignore */
+	--fs-h8: var(--f-s-3); /* prettier-ignore */
+	--fs-h9: var(--f-s-4); /* prettier-ignore */
+}

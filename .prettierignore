@@ -1,0 +1,9 @@
+# Build output
+_site
+
+# Dependencies
+node_modules
+bun.lock
+
+# Misc
+.git

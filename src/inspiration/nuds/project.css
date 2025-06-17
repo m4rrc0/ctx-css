@@ -1,0 +1,254 @@
+/* TODO: add emphasis utilities */
+/* https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities */
+/* https://tailwindcss.com/docs/plugins#dynamic-utilities */
+/* https://github.com/tailwindlabs/tailwindcss/discussions/6075 */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-emphasis-color?retiredLocale=nl */
+
+/* GLOBAL */
+html {
+	@media (prefers-reduced-motion: no-preference) {
+		scroll-behavior: smooth;
+	}
+	@apply f-var-s1+1;
+	/* height of the nav logo + nav y padding * 2 */ /* prettier-ignore */
+	scroll-padding-top: calc(var(--f-s2) + var(--f-s1\+1) * 2 + var(--f-s0));
+}
+
+:--button {
+	@apply f-text-s0 f-px-s0 f-py-s-2 border-style-solid decoration-none border-3 inline-block;
+}
+
+& :--mark {
+	@apply bg-transparent;
+	position: relative;
+	&::before {
+		position: absolute;
+		content: "";
+		z-index: -1;
+		inset: 0 -5px 0 5px;
+		box-shadow: inset 0 -0.5em 0 var(--color-bg__mark);
+		/* box-shadow: inset 0 -0.5em 0 theme(colors.curcuma.light); */
+	}
+}
+
+/* SECTIONS */
+/* Nav */
+.sticky-nav::before {
+	/* box-shadow: 0 0 0.5rem hsl(0 0% 0% / 0.3); */
+	animation: navShadow linear forwards;
+	animation-timeline: view(block);
+	/* animation-timeline: view(); */
+	animation-range-start: 100vh;
+	animation-range-end: 200vh;
+}
+@keyframes navShadow {
+	100% {
+		box-shadow: 0 0 0.5rem hsl(0 0% 0% / 0.3);
+		/* border-bottom: solid 5px red; */
+	}
+}
+/* Services */
+@screen lg {
+	accordeon-details:defined {
+		@apply f-var-s4;
+		@apply f-var-s0;
+		--_gap-width: var(--f-s2);
+		--_line-width: 3px;
+		/* --_line-color: theme(colors.coral.mid); */
+		--_line-color: currentcolor;
+
+		display: grid;
+		/* @apply f-gap-x-s0; */
+		column-gap: var(--_gap-width);
+		grid-template-columns: [headings-start] auto [headings-end text-start] 1fr [text-end];
+		grid-template-rows: repeat(8, var(--f-s4, 3rem));
+		/* grid-template-rows: repeat(8, minmax(var(--f-s4, 3rem), 1fr)); */
+		/* grid-auto-rows: var(--f-s3, 3rem); */
+		grid-auto-rows: 1fr;
+
+		& > details {
+			display: contents;
+			& > summary {
+				@apply items-end justify-end;
+				/* Setup a ::before on every summary to apply the box-shadow. It aligns to the middle of the gutter */
+				position: relative;
+				&::before {
+					position: absolute;
+					content: "";
+					inset: 0 calc(var(--_gap-width) / 2 * -1) 0 0;
+				}
+			}
+			/* Every title (except the first one) gets a right side vertical line */
+			&:not(:first-child) > summary {
+				&::before {
+					/* box-shadow: offset-x | offset-y | blur-radius | color */
+					box-shadow: var(--_line-width) 0 0 var(--_line-color);
+				}
+			}
+			/* Remove line for all titles after the one that is open */
+			&[open] ~ details {
+				& > summary {
+					&::before {
+						box-shadow: none;
+					}
+				}
+			}
+			/* The opened one get both the right vertical line and the bottom horizontal */
+			&[open] > summary {
+				&::before {
+					/* Need to grow the box or there is a gap in the line */
+					inset: calc(-1 * var(--_line-width)) calc(-1 / 2 * var(--_gap-width)) 0 0;
+					box-shadow: var(--_line-width) var(--_line-width) 0 var(--_line-color);
+				}
+			}
+			/* The first title only needs the bottom line */
+			&[open]:first-child > summary {
+				&::before {
+					box-shadow: 0 var(--_line-width) 0 var(--_line-color);
+				}
+			}
+			&[open] {
+				& > .details-text {
+					position: relative;
+					&::before {
+						position: absolute;
+						content: "";
+						z-index: -1;
+						/* Need to grow the box or the vertical and horizontal lines does not align */
+						inset: calc(var(--_line-width) + 0.5px) 0 0 calc(-1 / 2 * var(--_gap-width));
+						box-shadow: 0 calc(-1 * var(--_line-width)) 0 var(--_line-color);
+					}
+				}
+			}
+		}
+		& summary {
+			grid-area: headings;
+		}
+		/* prettier-ignore */
+		& > details:nth-child(1) > summary { grid-row: 1; } /* prettier-ignore */
+		& > details:nth-child(2) > summary { grid-row: 2; } /* prettier-ignore */
+		& > details:nth-child(3) > summary { grid-row: 3; } /* prettier-ignore */
+		& > details:nth-child(4) > summary { grid-row: 4; } /* prettier-ignore */
+		& > details:nth-child(5) > summary { grid-row: 5; } /* prettier-ignore */
+		& > details:nth-child(6) > summary { grid-row: 6; } /* prettier-ignore */
+		& > details:nth-child(7) > summary { grid-row: 7; } /* prettier-ignore */
+		& > details:nth-child(8) > summary { grid-row: 8; } /* prettier-ignore */
+		& > details:nth-child(9) > summary { grid-row: 9; } /* prettier-ignore */
+
+		& .details-text {
+			/* display: block; */
+			grid-area: text;
+			grid-row: 2 / span 7;
+			padding-top: calc((var(--_gap-width) / 2) - 0.2em);
+			padding-bottom: calc((var(--_gap-width) / 2) - 0.2em);
+
+			/* TODO: Find a way to accomodate content in .details-text. ? Scroll overflow ? */
+		}
+		details:not([open]) .details-text {
+			display: none;
+		}
+		/* TODO: if details closed: text should be visibly hidden or even display none */
+	}
+	/* .services {} */
+}
+
+.boxes-values {
+	@apply f-var-s9.5;
+	@apply gap-col-0 w-100% sm:columns-2 md:columns-3 [&>div]:break-inside-avoid;
+	/* GRID */
+	/* display: grid;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(2, 1fr); */
+	/* FLEX */
+	/* display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	max-height: 700px; */
+	/* max-width: 100%; */
+}
+.box-true {
+	/* @apply f-w-s9; */
+	/* width: var(--f-s9.5); */
+	/* @apply f-w-s9.5; */
+	@apply f-mt-s4;
+}
+.box-eco {
+	/* @apply f-w-s9.5; */
+	/* @apply !f-pr-s0; */
+	@screen sm {
+		padding-inline: 0 !important;
+		position: relative;
+		isolation: isolate;
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: -1;
+			inset: 0 0 0 calc(-1 * (var(--fs-h2)));
+			background-color: inherit;
+		}
+	}
+}
+.box-quality {
+	/* position: relative;
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		inset: calc(-1 * var(--f-s2)) 0 0 0;
+		inset: -100px 0 0 0;
+
+		background-color: inherit;
+	} */
+	/* @apply f-pt-s4; */
+}
+.box-vibes {
+	/* @apply f-w-s9; */
+}
+.box-empty {
+	/* @apply f-h-s4; */
+}
+.box-bs {
+	/* @apply f-mt-s4; */
+}
+.box-impact {
+	/* @apply f-w-s9; */
+}
+
+/* FORM */
+form {
+	appearance: none;
+}
+input {
+	border: none;
+	border-bottom: solid 3px;
+}
+input[type="submit"],
+textarea {
+	border: solid 3px;
+}
+.submitting :--button {
+	opacity: 0.7;
+}
+
+body > footer address {
+	@apply f-pl-s-1 leading-tight;
+	position: relative;
+	isolation: isolate;
+	&::before {
+		position: absolute;
+		content: "";
+		z-index: -1;
+		inset: 0.75em 0;
+		box-shadow: inset 1px 0 0 theme(colors.curcuma.mid);
+	}
+}
+
+/* Full Bleed: break out of a reduced width */
+/* As seen here: https://piccalil.li/tutorial/creating-a-full-bleed-css-utility/ */
+/* .full-bleed,
+.full-bleed::before,
+.full-bleed::after {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background-color: #262626;
+} */
