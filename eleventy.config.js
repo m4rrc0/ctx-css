@@ -1,5 +1,10 @@
 import { build as bunBuild, plugin as bunPlugin } from "bun";
 
+const ELEVENTY_RUN_MODE = process.env.ELEVENTY_RUN_MODE;
+const NODE_ENV = process.env.NODE_ENV;
+// If NODE_ENV is production or ELEVENTY_RUN_MODE is build, minify
+const MINIFY = NODE_ENV === "production" || (!NODE_ENV && ELEVENTY_RUN_MODE === "build");
+
 // TODO: plugin not working. May be because 
 // const cssTransformPlugin = {
 //   name: "css-transform",
@@ -28,7 +33,7 @@ const cssBuildPlugin = async function() {
       outdir: './dist',
       naming: '[name].css',
       // plugins: [cssTransformPlugin],
-      // minify: true,
+      minify: MINIFY,
     });
 }
 
