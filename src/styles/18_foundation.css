@@ -209,7 +209,7 @@ body {
 }
 
 :where(p, h1, h2, h3, h4, h5, h6, dl, dt, dd, quote, blockquote, figcaption),
-:where(:not(nav)) :where(ul, ol) {
+:where(:not(nav)) > :where(ul, ol) {
   max-width: var(--width-prose);
   margin-inline: auto;
 }
