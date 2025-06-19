@@ -61,6 +61,7 @@
    ========================================================================== */
 
 :root {
+  /* Size Scale */
   /* Step -2: 11.1111px → 11.2556px */
   --step--2: clamp(0.6944rem, 0.6919rem + 0.0129vw, 0.7035rem);
   /* Step -1: 13.3333px → 15.0038px */
@@ -79,6 +80,11 @@
   --step-5: clamp(2.4883rem, 1.6962rem + 3.9608vw, 5.2609rem);
   /* Step 6: 47.7757px → 112.2047px */
   --step-6: clamp(2.986rem, 1.8355rem + 5.7526vw, 7.0128rem);
+
+  /* Page widths */
+  --width-max: 80rem;
+  /* NOTE: Do not use ch here because it is applied to headings and we want an uniform width */
+  --width-prose: 50rem;
 }
 
 /* 1.1 Base typography */
@@ -145,23 +151,24 @@ code {
 /* 1.4 Lists */
 
 /* 1.5 Quotes & Blockquotes */
-q {
+:where(q) {
   font-style: italic;
 }
 
-blockquote {
+:where(blockquote) {
+  /* TODO: find a solution to indent because this gets overwritten by margin-inline: auto down below */
   margin-inline: 1em;
   padding-inline-start: 1em;
   border-left: 1px solid currentColor;
   font-style: italic;
 }
 
-blockquote > footer {
+:where(blockquote > footer) {
   font-style: normal;
   border: 0;
 }
 
-blockquote cite {
+:where(blockquote cite) {
   font-style: normal;
 }
 
@@ -183,21 +190,11 @@ blockquote cite {
 body {
   color: #333;
   background-color: #fdfdfe;
+  padding-inline: 0.68rem;
 }
 
-:where(
-  .prose,
-  main,
-  header,
-  footer,
-  article,
-  section,
-  aside,
-  form,
-  body:not(:has(:where(main, article)))
-) {
-  max-width: 50rem;
-  max-width: 65ch;
+:where(.prose, main, header, footer, article, section, aside, form, fieldset, body) {
+  max-width: var(--width-max);
   margin-inline: auto;
 
   /* Apply flow spacing inside sectionning elements */
@@ -205,6 +202,15 @@ body {
   & > * + *:not(:where(h1, h2, h3, h4, h5, h6, p)) {
     margin-block-start: 0.8em;
   }
+}
+
+:where(.prose, article, aside, form, fieldset, body:not(:has(:where(main, article)))) {
+  max-width: var(--width-prose);
+}
+
+:where(p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, quote, blockquote, figcaption) {
+  max-width: var(--width-prose);
+  margin-inline: auto;
 }
 
 /* 2.2 Sectioning elements */

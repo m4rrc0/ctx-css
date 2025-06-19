@@ -4,6 +4,9 @@
  * Embraces the cascade, uses progressive enhancement, and provides a solid foundation
  */
 
+:root {
+  --scroll-margin: 5ex;
+}
 /* Box sizing rules */
 *,
 *::before,
@@ -18,77 +21,52 @@ html {
   text-size-adjust: none;
 }
 
-body {
+:where(body) {
   font-family: system-ui, sans-serif;
 }
 
 /* Normalize margins with logical properties for better internationalization */
 /* Reset only top-level margins to allow for proper spacing within components */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure,
-blockquote,
-dl,
-dd {
+:where(body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd) {
   margin-block-end: 0;
 }
 
 /* Only remove list styles on ul, ol elements with a list role */
 /* This preserves default list styles for semantic lists while allowing unstyled lists when needed */
-ul[role='list'],
-ol[role='list'] {
+:where(ul[role='list'], ol[role='list']) {
   list-style: none;
   padding-inline-start: 0;
 }
 
 /* Set core body defaults */
-body {
+:where(body) {
   min-height: 100vh;
   line-height: 1.5;
   overflow-wrap: break-word; /* Break long words if needed */
 }
 
 /* Push footer to bottom of page */
-footer {
+:where(footer) {
   margin-block-start: auto;
 }
 
 /* Improve typography */
 /* Set shorter line heights on headings and interactive elements */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button,
-input,
-label {
+:where(h1, h2, h3, h4, h5, h6, button, input, label) {
   line-height: 1.1;
 }
 
 /* Balance text wrapping on headings and prevent overflow with long words */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
   text-wrap: balance;
   max-width: 100%; /* Ensure headings don't exceed their container */
 }
-h1 {
+:where(h1) {
   hyphens: auto; /* Add hyphens when breaking words for better readability. NOTE: word breaking is more sensitive with this */
 }
 
 /* A elements that don't have a class get default skip-ink */
-a:not([class]) {
+:where(a:not([class])) {
   text-decoration-skip-ink: auto;
 }
 :where(a:not([class]) > *) {
@@ -96,28 +74,19 @@ a:not([class]) {
 }
 
 /* Make images easier to work with */
-img,
-picture,
-video,
-svg {
+:where(img, picture, video, svg) {
   max-width: 100%;
   height: auto; /* Maintain aspect ratio */
 }
 
 /* Only block display for images that are direct children of certain containers */
-figure > :is(img, picture, video),
-p > :is(img, picture, video):only-child,
-div > :is(img, picture, video):only-child {
+:where(figure) > :where(img, picture, video),
+:where(p, div) > :where(img, picture, video):only-child {
   display: block;
 }
 
 /* Form elements: prevent overflow and improve usability */
-input,
-button,
-textarea,
-select,
-fieldset,
-legend {
+:where(input, button, textarea, select, fieldset, legend) {
   font: inherit; /* Shorthand for font-family and font-size */
   max-width: 100%;
 }
@@ -130,35 +99,35 @@ textarea {
 }
 
 /* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
+:where(textarea:not([rows])) {
   min-height: 10em;
 }
 
 /* Handle number input controls specially */
-input[type='number'] {
+:where(input[type='number']) {
   width: auto; /* Prevent full-width number inputs */
 }
 
 /* Ensure form controls are properly contained */
-fieldset {
+:where(fieldset) {
   min-width: 0; /* Prevent minimum content width in Firefox and others */
 }
 
 /* Make sure legends don't cause overflow */
-legend {
+:where(legend) {
   white-space: normal; /* Allow wrapping */
   display: table; /* Allow margin to work */
 }
 
 /* Prevent unexpected clipping of decorations, shadows, animations, ... */
-svg {
+:where(svg) {
   overflow: visible;
 }
 
 /* SVGs in text contexts - icon-sized and aligned with text */
 /* Full list of inline elements can probalby be avoided? */
 /* :is( p, span, a, button, label, li, dt, dd, th, td, abbr, b, bdi, bdo, cite, code, data, dfn, em, i, kbd, mark, q, ruby, s, samp, small, strong, sub, sup, time, u, var) */
-svg:not([width]):not([height]):not(:only-child),
+:where(svg:not([width]):not([height]):not(:only-child)),
 /* Target SVGs without explicit dimensions inside text containers */
 :where(a, button, label, span, p, li, dt, dd, th, td, code, summary) svg:not([width]):not([height]) {
   display: inline-block;
@@ -192,20 +161,17 @@ svg:not([width]):not([height]):not(:only-child),
 
 /* Improve scrolling experience */
 :target {
-  scroll-margin-block: 5ex;
+  scroll-margin-block: var(--scroll-margin);
 }
 
 /* Fix monospace sizing issues and overflow */
-pre,
-code,
-kbd,
-samp {
+:where(pre, code, kbd, samp) {
   font-family: monospace, monospace;
   font-size: 1em;
 }
 
 /* Prevent code blocks from overflowing */
-pre {
+:where(pre) {
   /* TODO: see if we should use white-space: pre-wrap; */
   /* Line breaks may render as less legible */
   /* white-space: pre-wrap; */
@@ -215,7 +181,7 @@ pre {
 }
 
 /* Handle long strings in code and prevent layout overflow */
-code {
+:where(code) {
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -234,7 +200,7 @@ select:focus:not(:focus-visible) {
 }
 
 /* Preserve default styling for tables and prevent overflow */
-table {
+:where(table) {
   border-collapse: collapse;
   table-layout: auto;
   display: block;
@@ -244,7 +210,7 @@ table {
 }
 
 /* Handle nested tables - reset nested tables back to table display */
-table table {
+:where(table table) {
   display: table;
   width: 100%;
   overflow: visible;
@@ -253,29 +219,26 @@ table table {
 
 /* Explicitly specify display for table elements for accessibility reasons */
 /* This maintains table semantics for assistive technologies when parent is display: block */
-caption {
+:where(caption) {
   display: table-caption;
 }
-thead,
-tbody,
-tfoot {
+:where(thead, tbody, tfoot) {
   display: table-row-group;
 }
-tr {
+:where(tr) {
   display: table-row;
 }
-th,
-td {
+:where(th, td) {
   display: table-cell;
 }
-colgroup {
+:where(colgroup) {
   display: table-column-group;
 }
-col {
+:where(col) {
   display: table-column;
 }
 
-hr {
+:where(hr) {
   width: 100%;
   border: none;
   border-top: 1px solid;
@@ -285,7 +248,7 @@ hr {
   display: inline; /* Prevent summary from jumping under the summary::marker (arrow) if it is a block element like a heading */
 }
 
-summary {
+:where(summary) {
   cursor: pointer;
 }
 

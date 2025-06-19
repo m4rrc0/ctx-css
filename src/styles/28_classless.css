@@ -1,0 +1,12 @@
+body > header nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+}
+body > header nav ul {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
