@@ -7,14 +7,14 @@
 REMOVED ~~color-light~~
 REMOVED ~~color-dark~~
 */
-.box {
+:where(.box) {
   display: block;
   --padding-box: var(--padding, calc(var(--gap, 1em) / 2));
   --border-width-box: var(--border-width, var(--size-border, 1px));
   padding: var(--padding-box);
   border: var(--border-width-box) solid;
 }
-.box.no-border {
+:where(.box.no-border) {
   border: none;
   outline: var(--border-width-box) solid transparent;
   outline-offset: calc(var(--border-width-box) * -1);
@@ -30,56 +30,56 @@ NEW: .split-after-me: class -> to specify after which element we want to split
 NEW: .horizontal: class bool
 NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion down this path
 */
-.stack {
+:where(.stack) {
   /* --gap-stack: var(--gap, 1em); */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-.stack:not(.horizontal) > *,
-.stack.recursive:not(.horizontal) * {
+:where(.stack:not(.horizontal)) > *,
+:where(.stack.recursive:not(.horizontal)) * {
   margin-block: 0;
 }
-.stack:not(.horizontal) > * + *,
-.stack.recursive:not(.horizontal) * + * {
+:where(.stack:not(.horizontal)) > * + *,
+:where(.stack.recursive:not(.horizontal)) * + * {
   margin-block-start: var(--gap-stack);
 }
-.stack:not(.horizontal):only-child {
+:where(.stack:not(.horizontal):only-child) {
   block-size: 100%;
 }
 /* horizontal mod */
-.stack.horizontal {
+:where(.stack.horizontal) {
   flex-direction: row;
   align-items: center;
 }
-.stack.horizontal > *,
-.stack.horizontal.recursive * {
+:where(.stack.horizontal) > *,
+:where(.stack.horizontal.recursive) * {
   margin-inline: 0;
 }
-.stack.horizontal > * + *,
-.stack.horizontal.recursive * + * {
+:where(.stack.horizontal) > * + *,
+:where(.stack.horizontal.recursive) * + * {
   margin-inline-start: var(--gap-stack);
 }
-.stack.horizontal:only-child {
+:where(.stack.horizontal:only-child) {
   inline-size: 100%;
 }
 /* split-after */ /* prettier-ignore */
-.stack:not(.horizontal) > .split-after-me { margin-block-end: auto; } /* prettier-ignore */
-.stack.horizontal > .split-after-me { margin-inline-end: auto; } /* prettier-ignore */
-.stack:not(.horizontal).split-after-1 > :nth-child(1) { margin-block-end: auto; } /* prettier-ignore */
-.stack.horizontal.split-after-1 > :nth-child(1) { margin-inline-end: auto; } /* prettier-ignore */
-.stack:not(.horizontal).split-after-2 > :nth-child(2) { margin-block-end: auto; } /* prettier-ignore */
-.stack.horizontal.split-after-2 > :nth-child(2) { margin-inline-end: auto; } /* prettier-ignore */
-.stack:not(.horizontal).split-after-3 > :nth-child(3) { margin-block-end: auto; } /* prettier-ignore */
-.stack.horizontal.split-after-3 > :nth-child(3) { margin-inline-end: auto; } /* prettier-ignore */
-.stack:not(.horizontal).split-after-4 > :nth-child(4) { margin-block-end: auto; } /* prettier-ignore */
-.stack.horizontal.split-after-4 > :nth-child(4) { margin-inline-end: auto; } /* prettier-ignore */
-.stack:not(.horizontal).split-after-5 > :nth-child(5) { margin-block-end: auto; } /* prettier-ignore */
-.stack.horizontal.split-after-5 > :nth-child(5) { margin-inline-end: auto; } /* prettier-ignore */
+:where(.stack:not(.horizontal)) > .split-after-me { margin-block-end: auto; } /* prettier-ignore */
+:where(.stack.horizontal) > .split-after-me { margin-inline-end: auto; } /* prettier-ignore */
+:where(.stack:not(.horizontal).split-after-1) > :nth-child(1) { margin-block-end: auto; } /* prettier-ignore */
+:where(.stack.horizontal.split-after-1) > :nth-child(1) { margin-inline-end: auto; } /* prettier-ignore */
+:where(.stack:not(.horizontal).split-after-2) > :nth-child(2) { margin-block-end: auto; } /* prettier-ignore */
+:where(.stack.horizontal.split-after-2) > :nth-child(2) { margin-inline-end: auto; } /* prettier-ignore */
+:where(.stack:not(.horizontal).split-after-3) > :nth-child(3) { margin-block-end: auto; } /* prettier-ignore */
+:where(.stack.horizontal.split-after-3) > :nth-child(3) { margin-inline-end: auto; } /* prettier-ignore */
+:where(.stack:not(.horizontal).split-after-4) > :nth-child(4) { margin-block-end: auto; } /* prettier-ignore */
+:where(.stack.horizontal.split-after-4) > :nth-child(4) { margin-inline-end: auto; } /* prettier-ignore */
+:where(.stack:not(.horizontal).split-after-5) > :nth-child(5) { margin-block-end: auto; } /* prettier-ignore */
+:where(.stack.horizontal.split-after-5) > :nth-child(5) { margin-inline-end: auto; } /* prettier-ignore */
 /* --- ... --- */
 
-.stack:not(.horizontal).recursive.stop * + *,
-.stack.horizontal.recursive.stop * + * {
+:where(.stack:not(.horizontal).recursive.stop) * + *,
+:where(.stack.horizontal.recursive.stop) * + * {
   margin-block-start: 0;
   margin-inline-start: 0;
 }
@@ -91,7 +91,7 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
 --gutters-center: var dimension (fallback to --padding OR --gap/2 OR 0.5em)
 .intrinsic: class bool
 */
-.center {
+:where(.center) {
   --gutters-center: var(--padding, calc(var(--gap, 1em) / 2));
   display: block;
   box-sizing: content-box;
@@ -99,10 +99,10 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
   max-inline-size: var(--max-width, var(--width-max, var(--measure, 60ch)));
   padding-inline: var(--gutters-center);
 }
-.center.text {
+:where(.center.text) {
   text-align: center;
 }
-.center.intrinsic {
+:where(.center.intrinsic) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,7 +120,7 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
 --justify-cluster: var keyword -> for horizontal alignment (fallback to flex-start)
 --align-cluster: var keyword -> for vertical alignment (fallback to center)
 */
-.cluster {
+:where(.cluster) {
   --gap-cluster: var(--gap, 1em);
   --justify-cluster: flex-start;
   --align-cluster: center;
@@ -153,19 +153,19 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
 */
 /* TODO: Find method to change order of element when they wrap 
 -> ?? can we use dir: rtl; to swap the order of elements when they wrap?? */
-.with-sidebar {
+:where(.with-sidebar) {
   --gap-sidebar: var(--gap, 1em);
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-sidebar);
 }
-.with-sidebar:not(.right) > :first-child,
-.with-sidebar.right > :last-child {
+:where(.with-sidebar:not(.right)) > :first-child,
+:where(.with-sidebar.right) > :last-child {
   flex-basis: var(--width-sidebar);
   flex-grow: 1;
 }
-.with-sidebar:not(.right) > :last-child,
-.with-sidebar.right > :first-child {
+:where(.with-sidebar:not(.right)) > :last-child,
+:where(.with-sidebar.right) > :first-child {
   flex-basis: 0;
   flex-grow: 999;
   min-inline-size: var(--content-min, 50%);
@@ -178,13 +178,13 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
 --width-wrap: var dimension | The container width at which the component switches between a horizontal and vertical layout
 .limit-[x]: class -> x = int (1 < x < 9) | The maximum number of elements allowed to appear in the horizontal configuration
 */
-.switcher {
+:where(.switcher) {
   --gap-switcher: var(--gap, 1em);
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-switcher);
 }
-.switcher > * {
+:where(.switcher) > * {
   flex-grow: var(--grow-switcher, 1);
   /* TODO: is 30rem a good default? / Might use ch if we know the text length of all list elements */
   flex-basis: calc((var(--width-wrap, 30rem) - 100%) * 999);
@@ -194,13 +194,13 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
   ); */
 }
 /* prettier-ignore */
-.switcher.limit-2 > :nth-last-child(n+3), .switcher.limit-2 > :nth-last-child(n+3) ~ * { flex-basis: 100%; } /* prettier-ignore */
-.switcher.limit-3 > :nth-last-child(n+4), .switcher.limit-3 > :nth-last-child(n+4) ~ * { flex-basis: 100%; } /* prettier-ignore */
-.switcher.limit-4 > :nth-last-child(n+5), .switcher.limit-4 > :nth-last-child(n+5) ~ * { flex-basis: 100%; } /* prettier-ignore */
-.switcher.limit-5 > :nth-last-child(n+6), .switcher.limit-5 > :nth-last-child(n+6) ~ * { flex-basis: 100%; } /* prettier-ignore */
-.switcher.limit-6 > :nth-last-child(n+7), .switcher.limit-6 > :nth-last-child(n+7) ~ * { flex-basis: 100%; } /* prettier-ignore */
-.switcher.limit-7 > :nth-last-child(n+8), .switcher.limit-7 > :nth-last-child(n+8) ~ * { flex-basis: 100%; } /* prettier-ignore */
-.switcher.limit-8 > :nth-last-child(n+9), .switcher.limit-8 > :nth-last-child(n+9) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-2) > :nth-last-child(n+3), :where(.switcher.limit-2) > :nth-last-child(n+3) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-3) > :nth-last-child(n+4), :where(.switcher.limit-3) > :nth-last-child(n+4) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-4) > :nth-last-child(n+5), :where(.switcher.limit-4) > :nth-last-child(n+5) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-5) > :nth-last-child(n+6), :where(.switcher.limit-5) > :nth-last-child(n+6) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-6) > :nth-last-child(n+7), :where(.switcher.limit-6) > :nth-last-child(n+7) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-7) > :nth-last-child(n+8), :where(.switcher.limit-7) > :nth-last-child(n+8) ~ * { flex-basis: 100%; } /* prettier-ignore */
+:where(.switcher.limit-8) > :nth-last-child(n+9), :where(.switcher.limit-8) > :nth-last-child(n+9) ~ * { flex-basis: 100%; } /* prettier-ignore */
 
 /* -------- COVER ------------ */
 /* TODO: from here haven't used custom selectors for all yet */
@@ -210,26 +210,26 @@ NEW: .stop: class bool -> apply `class="stack recursive stop"` to stop recursion
 .no-padding: class bool  (false) | Whether to remove the padding from the parent element
 NEW: .centered | place a ".centered" class on the child that needs centering
 */
-.cover {
+:where(.cover) {
   --gap-cover: var(--gap, 1em);
   display: flex;
   flex-direction: column;
   min-block-size: var(--min-height-cover, 100vh);
   padding: var(--gap-cover);
 }
-.cover.no-padding {
+:where(.cover.no-padding) {
   padding: 0;
 }
-.cover > * {
+:where(.cover) > * {
   margin-block: var(--gap-cover);
 }
-.cover > :first-child:not(.centered) {
+:where(.cover) > :first-child:not(.centered) {
   margin-block-start: 0;
 }
-.cover > :last-child:not(.centered) {
+:where(.cover) > :last-child:not(.centered) {
   margin-block-end: 0;
 }
-.cover > .centered {
+:where(.cover) > .centered {
   margin-block: auto;
 }
 /* TODO: do this with a mixin and/or function if we need it */ /*
@@ -243,7 +243,7 @@ NEW: .centered | place a ".centered" class on the child that needs centering
 --width-column-min: var dimension -> minimum col width (or flex-basis if in flex mode)
 --width-column-max: var dimension -> max col width
 */
-.grid-auto {
+:where(.grid-auto) {
   --gap-grid: var(--gap, 1em);
   display: grid;
   grid-gap: var(--gap-grid);
@@ -252,13 +252,13 @@ NEW: .centered | place a ".centered" class on the child that needs centering
 /* @supports (width: min(var(--width-column-min, 250px), 100%)) { */
 /* @supports (width: min(var(--width-column-min, 10rem), 100%)) { */
 @supports (width: min(10rem, 100%)) and (width: var(--width-column-min, 10rem)) {
-  .grid-auto {
+  :where(.grid-auto) {
     /* grid-template-columns: repeat(auto-fit, minmax(min(var(--width-column-min, 250px), 100%), 1fr)); */
     grid-template-columns: repeat(auto-fit, minmax(min(var(--width-column-min, 10rem), 100%), 1fr));
   }
 }
 
-.grid-auto > * {
+:where(.grid-auto) > * {
   max-inline-size: var(--width-column-max, none);
 }
 
@@ -271,7 +271,7 @@ NEW: --aspect-ratio: var number or fraction (16/9) | The element's aspect ratio
 NEW: --object-fit-frame: var keyword
 */
 
-.frame {
+:where(.frame) {
   --n: 16;
   --d: 9;
   aspect-ratio: var(--n) / var(--d);
@@ -282,10 +282,7 @@ NEW: --object-fit-frame: var keyword
   justify-content: center;
   align-items: center;
 }
-.frame > .frame-inner,
-img,
-video,
-svg {
+:where(.frame) > .frame-inner {
   inline-size: 100%;
   block-size: 100%;
   object-fit: var(--object-fit-frame, cover);
@@ -305,7 +302,7 @@ NEW: .no-js: class bool (false) | Wether the observer has been setup to manage t
 /* TODO: ? implement background attachment local for affordance instead. http://lea.verou.me/2012/04/background-attachment-local/ */
 /* TODO: ? should --color-thumb have a fallback? */
 
-.reel {
+:where(.reel) {
   --gap-reel: var(--gap, 1em);
   display: flex;
   block-size: var(--height, auto);
@@ -314,40 +311,40 @@ NEW: .no-js: class bool (false) | Wether the observer has been setup to manage t
   scrollbar-color: var(--color-thumb, currentColor) var(--color-track, transparent);
 }
 /* NEW */
-.reel.no-bar {
+:where(.reel.no-bar) {
   scrollbar-width: none;
 }
-.reel > * {
+:where(.reel) > * {
   flex: 0 0 var(--item-width, auto);
 }
 /* TODO: decide if we expand this selector */
 /* .reel > .img,
 .reel > .image, */
-.reel > img {
+:where(.reel) > img {
   block-size: 100%;
   flex-basis: auto;
   /* ?? Shouldn't it be inline-size: auto; */
   width: auto;
 }
-.reel > * + * {
+:where(.reel) > * + * {
   margin-inline-start: var(--gap-reel);
 }
-.reel.overflowing:not(.no-bar),
-.reel.no-js:not(.no-bar) {
+:where(.reel.overflowing:not(.no-bar)),
+:where(.reel.no-js:not(.no-bar)) {
   padding-block-end: var(--gap-reel);
 }
 /* TODO: NEW -> part of nuds-colors. should we set defaults and override in nuds-colors? */
-.reel::-webkit-scrollbar {
+:where(.reel)::-webkit-scrollbar {
   block-size: 1rem; /* NOTE: shouldn't it be --gap-reel instead ? */
 }
 /* NEW */
-.reel.no-bar::-webkit-scrollbar {
+:where(.reel.no-bar)::-webkit-scrollbar {
   display: none;
 }
-.reel::-webkit-scrollbar-track {
+:where(.reel)::-webkit-scrollbar-track {
   background-color: var(--color-track, transparent);
 }
-.reel::-webkit-scrollbar-thumb {
+:where(.reel)::-webkit-scrollbar-thumb {
   background-color: var(--color-track, transparent);
   background-image: linear-gradient(
     var(--color-track, transparent) 0,
@@ -365,20 +362,20 @@ NEW: .no-js: class bool (false) | Wether the observer has been setup to manage t
 NEW: --position-imposter: var keyword | alternative positionning. overrides the .fixed class
 .breakout: class bool | Whether the element is allowed to break out of the container over which it is positioned
 */
-.imposter {
+:where(.imposter) {
   display: block;
   position: var(--position-imposter, absolute);
   inset-block-start: 50%;
   inset-inline-start: 50%;
   transform: translate(-50%, -50%);
 }
-.imposter:not(.breakout) {
+:where(.imposter:not(.breakout)) {
   --margin-imposter: 0px;
   overflow: auto;
   max-inline-size: calc(100% - (var(--margin-imposter) * 2));
   max-block-size: calc(100% - (var(--margin-imposter) * 2));
 }
-.imposter.fixed {
+:where(.imposter.fixed) {
   position: var(--position-imposter, fixed);
 }
 
@@ -393,17 +390,17 @@ NEW: --position-imposter: var keyword | alternative positionning. overrides the 
 .sub: class bool
 REMARK: .icon can be used alone if we don't need to control over space between icon and text
 */
-.icon {
+:where(.icon) {
   /* Usually 0.75em more closely matches uppercase letter height */
   width: var(--width-icon, 0.75em);
   /* 1cap Not yet supported and unrecognized fallback messes things / 1cap = nominal height of capital letters of the element's font */
   /* width: var(--width-icon, 1cap); */
   height: var(--height-icon, 0.75em);
   /* height: var(--height-icon, 1cap); */
-  vertical-align: var(--vertical-align-icon, baseline);
+  vertical-align: var(--vertical-align-icon, -0.125em);
 }
-.icon.lowercase,
-.lowercase > .icon {
+:where(.icon.lowercase),
+:where(.lowercase) > .icon {
   /* TODO: ?is this a good default? */
   width: var(--width-icon, 0.6em);
   /* matches lowercase height of "x" */
@@ -411,38 +408,38 @@ REMARK: .icon can be used alone if we don't need to control over space between i
   height: var(--height-icon, 0.6em);
   height: var(--height-icon, 1ex);
 }
-.icon.sub,
-.icon.super,
-.super > .icon,
-.sub > .icon {
+:where(.icon.sub),
+:where(.icon.super),
+:where(.super) > .icon,
+:where(.sub) > .icon {
   /* TODO: ?is this a good default? */
   width: var(--width-icon, 0.25em);
   height: var(--height-icon, 0.25em);
 }
-.icon.sub,
-.sub > .icon {
+:where(.icon.sub),
+:where(.sub) > .icon {
   vertical-align: var(--vertical-align-icon, sub);
 }
-.icon.super,
-.super > .icon {
+:where(.icon.super),
+:where(.super) > .icon {
   vertical-align: var(--vertical-align-icon, super);
 }
-.with-icon {
+:where(.with-icon) {
   display: inline-flex;
   align-items: baseline;
 }
-.with-icon.lowercase {
+:where(.with-icon.lowercase) {
   text-transform: lowercase;
 }
-.with-icon:not(.right) .icon {
+:where(.with-icon:not(.right)) .icon {
   margin-inline-end: var(--gap-icon, 1rem);
   margin-inline-end: var(--gap-icon, 1ch);
 }
-.with-icon.right .icon {
+:where(.with-icon.right) .icon {
   margin-inline-start: var(--gap-icon, 1rem);
   margin-inline-start: var(--gap-icon, 1ch);
 }
-.with-icon .icon:only-child {
+:where(.with-icon) .icon:only-child {
   margin-inline-end: 0;
   margin-inline-start: 0;
 }

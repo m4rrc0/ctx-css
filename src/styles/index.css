@@ -10,6 +10,9 @@
 /* LAYER COLORS  */
 /* @import "./34_colors.css"; */
 
+/* LAYER UTILITIES  */
+@import './35_utilities.css';
+
 /* LAYER COMPONENTS  */
 /* @import "./36_components.css"; */
 /* complex utilities are more like components */

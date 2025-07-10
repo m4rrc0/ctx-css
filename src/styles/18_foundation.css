@@ -93,22 +93,28 @@ body {
 }
 
 /* 1.2 Headings */
-h6 {
+h6,
+.h6 {
   font-size: var(--step--2);
 }
-h5 {
+h5,
+.h5 {
   font-size: var(--step--1);
 }
-h4 {
+h4,
+.h4 {
   font-size: var(--step-1);
 }
-h3 {
+h3,
+.h3 {
   font-size: var(--step-2);
 }
-h2 {
+h2,
+.h2 {
   font-size: var(--step-3);
 }
-h1 {
+h1,
+.h1 {
   font-size: var(--step-4);
 }
 
@@ -197,9 +203,13 @@ body {
   max-width: var(--width-max);
   margin-inline: auto;
 
+  & > p:first-child {
+    margin-block-start: 0;
+  }
+
   /* Apply flow spacing inside sectionning elements */
   /* TODO: Might need special adjustment for some elements */
-  & > * + *:not(:where(h1, h2, h3, h4, h5, h6, p)) {
+  & > * + *:not(:where(h1, h2, h3, h4, h5, h6, p, style)) {
     margin-block-start: 0.8em;
   }
 }
@@ -212,6 +222,15 @@ body {
 :where(:not(nav)) > :where(ul, ol) {
   max-width: var(--width-prose);
   margin-inline: auto;
+}
+
+/* Try an nuke browser extensions added at the end of the body */
+/* TODO: Find a better way */
+body > footer ~ * {
+  all: revert;
+  margin: 0;
+  padding: 0;
+  display: none;
 }
 
 /* 2.2 Sectioning elements */
@@ -229,12 +248,26 @@ body {
    ========================================================================== */
 
 /* 3.1 Images */
+/* Comes from the frame layout.css - Seems like a good default */
+:where(img, picture, video, svg) {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: var(--_object-fit, cover);
+}
 
 /* 3.2 Figures */
 
 /* 3.3 Iframes */
 
 /* 3.4 Audio/Video */
+
+/* 3.5 SVG */
+/* Inline SVG */
+/* prettier-ignore */
+:where(a, button, label, span, p, li, dt, dd, th, td, code, summary) svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
 
 /* ==========================================================================
    #4 FORMS

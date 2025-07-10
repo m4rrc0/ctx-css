@@ -14,7 +14,9 @@
     "clean": "rm -rf dist",
     "build": "eleventy",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,html,css,md}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,html,css,md}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,html,css,md}\"",
+    "preexport:una-scelta": "bun --bun run eleventy",
+    "export:una-scelta": "cp -f dist/index.css ../../customers/karima-una-scelta/poko-website-builder/_content/_files/ctx.css"
   },
   "type": "module"
 }

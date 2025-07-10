@@ -48,8 +48,9 @@
   position: relative;
   /* cursor: pointer; */
   /* transition: transform 300ms ease-in-out, box-shadow 400ms ease, background 100ms ease; */
-  --shadow-breakout-clickable: var(--shadow-raised-s);
-  --shadow-breakout-clickable-hover: var(--shadow-raised-m);
+  /* --shadow-breakout-clickable: var(--shadow-raised-s); */
+  /* --shadow-breakout-clickable-hover: var(--shadow-raised-m); */
+  /* --transform-breakout-clickable-hover: translateY(-0.2rem); */
   box-shadow: var(--shadow-breakout-clickable);
 }
 .breakout-clickable .clickable::after {
@@ -66,7 +67,7 @@
   /* box-shadow: 0 0.5rem 0.5rem var(--color-shadow); */
   /* box-shadow: 0 30px 60px -20px rgb(0 0 0 / 20%), 0 50px 100px -10px rgb(23 41 64 / 10%); */
   box-shadow: var(--shadow-breakout-clickable-hover);
-  transform: translateY(-0.2rem);
+  transform: var(--transform-breakout-clickable-hover);
 }
 .breakout-clickable .clickable:focus {
   outline: none;
@@ -82,10 +83,10 @@
 .full-bleed-before::before,
 .full-bleed-after::after {
   /* --full-bleed-max-width: 2000px; */
-  width: 100vw;
-  width: min(100vw, var(--full-bleed-max-width, 100vw));
+  width: 99.99vw;
+  width: min(99.99vw, var(--full-bleed-max-width, 99.99vw));
   margin-left: calc(50% - 50vw);
-  margin-left: calc(50% - min(100vw, var(--full-bleed-max-width, 100vw)) / 2);
+  margin-left: calc(50% - min(99.99vw, var(--full-bleed-max-width, 99.99vw)) / 2);
 }
 .full-bleed-before,
 .full-bleed-after {
@@ -164,3 +165,100 @@ a.external::after {
 		transform: rotate(-180deg);
 	}
 } */
+
+/* Shadow scroll */
+/* TODO: improve this */
+/* prettier-ignore */
+.scroll-shadows-horizontal {
+  /* display: flex; */
+  /* height: auto; */
+  /* overflow-x: auto;
+  overflow-y: hidden; */
+  /* scrollbar-width: none; */
+  /* scrollbar-color: white currentcolor; */
+  background-image: linear-gradient(to right, white, white),
+    linear-gradient(to right, white, white),
+    linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0)),
+    linear-gradient(to left, rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+/* prettier-ignore */
+.scroll-shadows-radial-v {
+  overflow: auto;
+
+  background:
+    /* Shadow Cover TOP */
+    linear-gradient(
+      white 30%,
+      rgba(255, 255, 255, 0)
+    ) center top,
+    
+    /* Shadow Cover BOTTOM */
+    linear-gradient(
+      rgba(255, 255, 255, 0), 
+      white 70%
+    ) center bottom,
+    
+    /* Shadow TOP */
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ) center top,
+    
+    /* Shadow BOTTOM */
+    radial-gradient(
+      farthest-side at 50% 100%,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ) center bottom;
+  
+  background-repeat: no-repeat;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+/* prettier-ignore */
+.scroll-shadows-radial-h {
+  --_opacity-clr: rgba(0, 0, 0, 0.2);
+  /* overflow: auto; */
+
+  background:
+    /* Shadow Cover TOP */
+    linear-gradient(
+      white 30%,
+      rgba(255, 255, 255, 0)
+    ) left center,
+    
+    /* Shadow Cover BOTTOM */
+    linear-gradient(
+      rgba(255, 255, 255, 0), 
+      white 70%
+    ) right center,
+    
+    /* Shadow TOP */
+    radial-gradient(
+      farthest-side at 0 50%,
+      var(--_opacity-clr),
+      rgba(0, 0, 0, 0)
+    ) left center,
+    
+    /* Shadow BOTTOM */
+    radial-gradient(
+      farthest-side at 100% 50%,
+      var(--_opacity-clr),
+      rgba(0, 0, 0, 0)
+    ) right center;
+  
+  background-repeat: no-repeat;
+  /* background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px; */
+  background-color: white;
+  background-size: 2rem 100%, 2rem 100%, 1rem 100%, 1rem 100%;
+
+  background-attachment: local, local, scroll, scroll;
+}

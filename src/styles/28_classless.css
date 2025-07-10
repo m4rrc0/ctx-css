@@ -1,9 +1,9 @@
-body > header nav {
+:where(body > header nav) {
   display: flex;
   flex-wrap: nowrap;
   gap: 2rem;
 }
-body > header nav ul {
+:where(body > header nav ul) {
   list-style: none;
   padding-inline-start: 0;
   display: flex;
